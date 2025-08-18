@@ -1,0 +1,311 @@
+/* .nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoText {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.centerLinks {
+  display: flex;
+  gap: 25px;
+}
+
+.centerLinks a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.centerLinks a:hover {
+  color: #00bfff;
+}
+
+.rightLinks {
+  display: flex;
+  gap: 15px;
+}
+
+.rightLinks a {
+  background: #0070f3;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.rightLinks a:hover {
+  background: #005bb5;
+}
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  background: url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop') no-repeat center center / cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.overlay {
+  text-align: center;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.overlay p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+.cta {
+  background: #0070f3;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cta:hover {
+  background: #005bb5;
+}
+
+.mainContent {
+  min-height: 100vh;
+  background: #f9f9f9;
+  padding: 100px 40px 40px 40px; 
+  overflow: hidden;
+} */
+
+.navsolid {
+  /*other pages me use karna hai*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  position: static;
+  /* width: 100vw; */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: #f6f8fa;
+  color: rgb(74, 159, 238);
+}
+.navhide{
+  display: none;
+}
+
+.navshow{
+  display: flex;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  position: fixed;
+  right: 0;
+  border-radius: 0;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoText {
+  color: #2a2929;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.centerLinks {
+  display: flex;
+  gap: 60px;
+}
+
+.centerLinks a {
+  color: black;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.centerLinks a:hover {
+  color: #00bfff;
+  transition: all 0.5s ease;
+}
+
+.rightLinks {
+  display: flex;
+  gap: 15px;
+}
+
+.rightLinks a {
+  background: #0070f3;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.rightLinks a:hover {
+  background: rgb(4, 119, 196);
+  transition: all 0.4s ease;
+}
+
+.hero {
+  width: 100vw;
+  height: 90vh;
+  background: url('/Can-investment-properties-enable-you-to-retire.jpg') no-repeat center center / cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0px 20px 90px rgb(163, 151, 151);
+}
+
+.overlay {
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.overlay p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+.cta {
+  background: rgb(19, 132, 224);
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cta:hover {
+  background: rgb(19, 132, 224);
+}
+
+
+/* .mainContent {
+  min-height: 100vh;
+  background: #f9f9f9;
+  padding: 100px 40px 40px 40px; 
+  overflow: hidden;
+} */
+
+.togglenav {
+  display: none;
+}
+
+@media (max-width:768px) {
+
+  .togglenav {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+    /* sabse upar rakho */
+    position: relative;
+    /* ya fixed agar zarurat ho toh */
+  }
+  .nav{
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+  }
+
+  .centerLinks {
+    display: none;
+    position: fixed;
+    top: 55px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    right: 0;
+    border-radius: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 2rem 1rem;
+    /* border: 2px solid black; */
+    z-index: 100;
+  }
+
+
+  .rightLinks {
+    display: none;
+    position: fixed;
+    top: 233px;
+    bottom: 0;
+     /* border: 2px solid black; */
+    left: 0;
+    right: 0;
+    height: 150px; 
+    /* width: 100%; */ 
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 2rem 1rem;
+    z-index: 100;
+  }
+
+  .show {
+    display: flex;
+  }
+
+  .hide {
+    display: none;
+  }
+}
