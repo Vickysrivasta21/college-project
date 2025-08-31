@@ -31,8 +31,8 @@ const Navbar = () => {
         </div>
         
         <div className={`${style.rightLinks} ${show ? style.show : style.hide}`}>
-          <Link target='_blank' href="/login">Login</Link>
-          <Link target='_blank' href="/signup">Signup</Link>
+          <Link target='_self' href="/login">Login</Link>
+          <Link target='_self' href="/signup">Signup</Link>
         </div>
         <button className={style.togglenav} onClick={()=>setshow(!show)}>
         <Image

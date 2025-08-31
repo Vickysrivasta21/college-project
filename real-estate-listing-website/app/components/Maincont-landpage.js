@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import bg from './backgroundMaincont.module.css'
 import { fetchData } from '@/lib/api'
+import { isUserSignedIn } from './userAuthCheck'
 const Maincont = () => {
     const [arr, setarr] = useState([])
     const [arr2, setarr2] = useState([])
@@ -44,6 +45,7 @@ const Maincont = () => {
     }
     return (
         <div>
+            {(isUserSignedIn()==false) &&
             <div className={style.recommendsignin}>
                 <div className={style.recommendsign}>
                     <h2>Get Personalised Home Recommendations here</h2>
@@ -59,7 +61,7 @@ const Maincont = () => {
                         style={{ objectFit: 'contain' }}
                     />
                 </div>
-            </div>
+            </div> }
             <div className={style.browseprop}>
                 <div className={style.buyprop}>
                     <div className={style.img}>

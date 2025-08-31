@@ -2,7 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
-import { fetchData } from "../../../../../lib/api";
+import { fetchData } from "@/lib/api";
 
 const CrendentialsProviderOptions: NextAuthOptions = {
   providers: [
@@ -26,9 +26,10 @@ const CrendentialsProviderOptions: NextAuthOptions = {
             body: JSON.stringify(_currentUserDetails),
           });
           const user = await res.json();
-          console.log(user)
+          var data = {"id": user["user"]["id"],"user": user["user"]["name"] } // temp
+          console.log(user,data) // temp
           if (res.ok && user) {
-            return user;
+            return data;
           }
           throw new Error("User not found.");
         } catch (err) {
@@ -47,6 +48,34 @@ const CrendentialsProviderOptions: NextAuthOptions = {
     }
     )
   ],
+  callbacks: {
+/*   
+    async signIn({ user, account, profile, email, credentials }) {
+      return true
+    },
+    
+    
+    async jwt({ token, user, account, profile, isNewUser }) {
+      return token
+    } */
+   /*async session({ session, user, token }) {
+     session.accessToken = token.accessToken
+    session.user.name = user.name
+    
+    
+      return session
+    }, */
+    async redirect({ url, baseUrl }) {
+      return "/dashboard"
+    }
+  },
+  events: {
+    /*signIn({user,account,profile,isNewUser}) {
+      //user.id
+      console.log("AccessToken: " + account.access_token)
+    } */
+  },
+  
 
   //pages: { // this is for custom pages
   //  signIn: "/sign-in"
