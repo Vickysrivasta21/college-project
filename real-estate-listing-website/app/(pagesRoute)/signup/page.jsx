@@ -33,7 +33,7 @@ export default function SignupPage() {
 
        
         setTimeout(() => {
-          router.push("/login");
+          router.push("/api/auth/signin");
         }, 1600); 
       } else {
         toast.error(data.msg || "Signup failed", {
@@ -78,7 +78,7 @@ export default function SignupPage() {
 
       <p style={{ textAlign: "center", marginTop: "1rem" }}>
         Already have an account?{" "}
-        <Link href="/login" style={{ color: "#2563eb", textDecoration: "underline" }}>
+        <Link href="/api/auth/signin" style={{ color: "#2563eb", textDecoration: "underline" }}>
           Login
         </Link>
       </p>
