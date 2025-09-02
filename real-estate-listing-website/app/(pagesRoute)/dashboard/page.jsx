@@ -13,7 +13,7 @@ export default function DashboardPage() {
   const [msg, setMsg] = useState("Loading...");
 
   useEffect(() => {
-    const token = cookieStore.get("better-auth.session_token")//localStorage.getItem("token");cookieStore.get("next")
+    const token = cookieStore.get("better-auth.session_token")
     if (!token) {
       setMsg("Not logged in");
       router.push("/login");
@@ -30,7 +30,7 @@ export default function DashboardPage() {
           setMsg(data.message || "Failed to fetch user");
         }
       } catch (err) {
-        //setMsg("Something went wrong");
+        setMsg("Something went wrong");
       }
     };
 
