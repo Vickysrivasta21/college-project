@@ -2,37 +2,35 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { fetchData } from "@/lib/api";
-import styles from '../dashboard/page.module.css'
+import { fetchData } from "@/_lib/api";
+import { authClient } from "@/_lib/betterauth/client-auth";
+import { data } from "react-router-dom";
+import styles from './page.module.css'
 
 export default function DashboardPage() {
   const router = useRouter();
-  const [user, setUser] = useState(null);
+  const [userdata, setUser] = useState(null);
   const [msg, setMsg] = useState("Loading...");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = cookieStore.get("better-auth.session_token")//localStorage.getItem("token");cookieStore.get("next")
     if (!token) {
       setMsg("Not logged in");
       router.push("/login");
       return;
     }
 
-    const fetchUser = async () => {
+    const fetchUser =  () => {
       try {
-        const res = await fetchData("/api/user/dashboard", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await res.json();
-        const userData = data.user ?? data;
+        const { data: session, isPending, error, refetch } =  authClient.useSession()
 
-        if (res.ok) {
-          setUser(userData);
+        if (!error) {
+          setUser(session);
         } else {
           setMsg(data.message || "Failed to fetch user");
         }
       } catch (err) {
-        setMsg("Something went wrong");
+        //setMsg("Something went wrong");
       }
     };
 
@@ -40,18 +38,22 @@ export default function DashboardPage() {
   }, [router]);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("better-auth.session_token");
     toast.success("Logout successful!", {
       position: "top-center",
       autoClose: 1500,
     });
+    authClient.signOut({
+      fetchOptions: {
+    onSuccess: () => {
+      router.push("/"); // redirect to login page
+    },
+  }}
+    )
 
-    setTimeout(() => {
-      router.push("/login");
-    }, 1600);
-  };
+  }
 
-  if (!user) {
+  if (!userdata) {
     return (
       <div className= {styles.centeredContainer}>
         <p>{msg}</p>
@@ -60,12 +62,12 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className={styles.page}>
-      <div className={styles.card}>
-        <h2 className={styles.title}>Welcome, {user.name || user.email || "User"}</h2>
+    <div style={styles.page}>
+      <div style={styles.card}>
+        <h2 style={styles.title}>Welcome, {user.name || user.email || "User"}</h2>
         <p><strong>Email:</strong> {user.email}</p>
         <p><strong>User ID:</strong> {user.id}</p>
-        <button className={styles.logoutButton} onClick={handleLogout}>
+        <button style={styles.logoutButton} onClick={handleLogout}>
           Logout
         </button>
       </div>
@@ -73,44 +75,3 @@ export default function DashboardPage() {
   );
 }
 
-// const styles = {
-//   page: {
-//     minHeight: "100vh",
-//     backgroundColor: "#f4f4f4",
-//     display: "flex",
-//     alignItems: "center",
-//     justifyContent: "center",
-//     padding: "1rem",
-//   },
-//   card: {
-//     backgroundColor: "#fff",
-//     padding: "2rem",
-//     borderRadius: "10px",
-//     boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-//     maxWidth: "400px",
-//     width: "100%",
-//     textAlign: "center",
-//   },
-//   title: {
-//     marginBottom: "1rem",
-//     fontSize: "1.5rem",
-//     color: "#333",
-//   },
-//   logoutButton: {
-//     marginTop: "1.5rem",
-//     padding: "10px 20px",
-//     backgroundColor: "#e63946",
-//     color: "#fff",
-//     border: "none",
-//     borderRadius: "5px",
-//     cursor: "pointer",
-//   },
-//   centeredContainer: {
-//     minHeight: "100vh",
-//     display: "flex",
-//     justifyContent: "center",
-//     alignItems: "center",
-//     fontSize: "1.2rem",
-//     color: "#555",
-//   },
-// };

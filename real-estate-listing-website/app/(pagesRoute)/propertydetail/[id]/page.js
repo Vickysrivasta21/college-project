@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import styles from "./Property.module.css";
-import { fetchData } from "@/lib/api";
+import { fetchData } from "@/_lib/api";
 
 const Map = dynamic(() => import("./Map"), { ssr: false });
 

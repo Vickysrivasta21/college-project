@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./EmptyPlots.module.css";
 import Link from "next/link"
-import { fetchData } from "@/lib/api";
+import { fetchData } from "@/_lib/api";
 
 export default function EmptyPlotsPage() {
   const [plots, setPlots] = useState([]);

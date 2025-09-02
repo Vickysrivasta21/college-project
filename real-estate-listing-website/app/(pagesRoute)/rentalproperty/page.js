@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import style from './rent.module.css'
 import { useForm } from 'react-hook-form';
-import { fetchData } from '@/lib/api';
+import { fetchData } from '@/_lib/api';
 
 const Rent = () => {
   const [rent, getrent] = useState([])

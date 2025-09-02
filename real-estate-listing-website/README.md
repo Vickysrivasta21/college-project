@@ -10,6 +10,8 @@ This project is made to fulfil the requirements of Web Technology class.
 - react
 - react-dom
 - react-toastify
+- better-auth
+- mongodb
 
 ### Development
 Steps
@@ -21,6 +23,10 @@ For Frontend:
 | Variable                   | Explaination                             |
 | :----------------          | :------:                                 |
 | `NEXT_PUBLIC_API_BASE_URL` |   The base URL of the backend with port. |
+| `NEXT_PUBLIC_APP_URL`      | The base URL of the frontend with port.  |
+| `AUTH_DATABASE_URL`        | The mongodb instance address for authentication database |
+| `BETTER_AUTH_SECRET`       | The Better Auth Secret.
+| `BETTER_AUTH_URL`          | Better Auth BASE URL ( The Base URL of the app) |
 
 For Backend:
 
@@ -35,3 +41,8 @@ For Backend:
 2. Run Frontend by `npm run dev` or `next dev` 
 3. run the backend server from the backend directory `backend` using `node server.js`
 4. Enjoy.
+
+
+### Development:
+
+1. Currently the authentication part is being handled by better-auth library, with its own mechanism to add/update/delete/verify the user using the mongodb database.

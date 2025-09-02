@@ -5,8 +5,8 @@ import style from './Maincont-landpage.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import bg from './backgroundMaincont.module.css'
-import { fetchData } from '@/lib/api'
-import { isUserSignedIn } from './userAuthCheck'
+import { fetchData } from '@/_lib/api'
+import { isUserSignedIn } from './Client_userAuthCheck'
 const Maincont = () => {
     const [arr, setarr] = useState([])
     const [arr2, setarr2] = useState([])
@@ -43,6 +43,7 @@ const Maincont = () => {
             return amount * 10000000
         }
     }
+    
     return (
         <div>
             {(isUserSignedIn()==false) &&
@@ -54,10 +55,10 @@ const Maincont = () => {
                 </div>
                 <div className={style.imagerecommend}>
                     <Image
-                        src="/1d9d5bce566c85fa242cb21ad3292cb8.webp"
+                        src='/1d9d5bce566c85fa242cb21ad3292cb8.webp'
                         width={200}
                         height={200}
-                        alt="Property image"
+                        alt='Property image'
                         style={{ objectFit: 'contain' }}
                     />
                 </div>

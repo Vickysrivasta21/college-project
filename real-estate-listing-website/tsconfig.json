@@ -22,7 +22,7 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".",  // Or the root directory you want to resolve from
+    "baseUrl": "app",  // Or the root directory you want to resolve from
     "paths": {
       "@/*": ["*"]
     }

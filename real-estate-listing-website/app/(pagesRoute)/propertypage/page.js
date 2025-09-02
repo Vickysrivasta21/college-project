@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import bg from '@/app/components/backgroundMaincont.module.css'
+import bg from '@/components/backgroundMaincont.module.css'
 import { useForm } from "react-hook-form";
-import { fetchData } from "@/lib/api";
+import { fetchData } from "@/_lib/api";
 
 const Propertypage = () => {
   const [data, setdata] = useState([]);
