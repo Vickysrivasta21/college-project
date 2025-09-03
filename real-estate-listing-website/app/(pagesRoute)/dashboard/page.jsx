@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { fetchData } from "@/_lib/api";
 import { authClient } from "@/_lib/betterauth/client-auth";
 import { data } from "react-router-dom";
-import styles from './page.module.css'
+import styles from "./page.module.css";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -13,24 +13,25 @@ export default function DashboardPage() {
   const [msg, setMsg] = useState("Loading...");
 
   useEffect(() => {
-    const token = cookieStore.get("better-auth.session_token")
+    const token = cookieStore.get("better-auth.session_token");
     if (!token) {
       setMsg("Not logged in");
       router.push("/login");
       return;
     }
 
-    const fetchUser =  () => {
+    const fetchUser = () => {
       try {
-        const { data: session, isPending, error, refetch } =  authClient.useSession()
-
-        if (!error) {
-          setUser(session);
-        } else {
-          setMsg(data.message || "Failed to fetch user");
-        }
+      
+        fetch("/api/auth/get-session")
+          .then((res) => res.json())
+          .then((data) => {
+            setMsg("Failed to fetch user");
+            setUser(data);
+          });
+       
       } catch (err) {
-        setMsg("Something went wrong");
+        setMsg("Something went wrong: " + err);
       }
     };
 
@@ -45,33 +46,37 @@ export default function DashboardPage() {
     });
     authClient.signOut({
       fetchOptions: {
-    onSuccess: () => {
-      router.push("/"); // redirect to login page
-    },
-  }}
-    )
-
-  }
+        onSuccess: () => {
+          router.push("/"); // redirect to root page.
+        },
+      },
+    });
+  };
 
   if (!userdata) {
     return (
-      <div className= {styles.centeredContainer}>
+      <div className={styles.centeredContainer}>
         <p>{msg}</p>
       </div>
     );
   }
 
   return (
-    <div style={styles.page}>
-      <div style={styles.card}>
-        <h2 style={styles.title}>Welcome, {user.name || user.email || "User"}</h2>
-        <p><strong>Email:</strong> {user.email}</p>
-        <p><strong>User ID:</strong> {user.id}</p>
-        <button style={styles.logoutButton} onClick={handleLogout}>
+    <div className={styles.page}>
+      <div className={styles.card}>
+        <h2 className={styles.title}>
+          Welcome, {userdata.user.name || userdata.user.email || "User"}
+        </h2>
+        <p>
+          <strong>Email:</strong> {userdata.user.email}
+        </p>
+        <p>
+          <strong>User ID:</strong> {userdata.user.id}
+        </p>
+        <button className={styles.logoutButton} onClick={handleLogout}>
           Logout
         </button>
       </div>
     </div>
   );
 }
-

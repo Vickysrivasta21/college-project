@@ -6,7 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import bg from './backgroundMaincont.module.css'
 import { fetchData } from '@/_lib/api'
-import { isUserSignedIn } from './Client_userAuthCheck'
+import { isUserSignedInHook } from './Client_userAuthCheck'
 const Maincont = () => {
     const [arr, setarr] = useState([])
     const [arr2, setarr2] = useState([])
@@ -46,12 +46,12 @@ const Maincont = () => {
     
     return (
         <div>
-            {(isUserSignedIn()==false) &&
+            {(isUserSignedInHook()==false) &&
             <div className={style.recommendsignin}>
                 <div className={style.recommendsign}>
                     <h2>Get Personalised Home Recommendations here</h2>
                     <p>Sign In for More Personalised Experience</p>
-                    <button className="btn"><Link target='_blank' href="/api/auth/signin">Login</Link></button>
+                    <button className="btn"><Link target='_self' href="/login">Login</Link></button>
                 </div>
                 <div className={style.imagerecommend}>
                     <Image

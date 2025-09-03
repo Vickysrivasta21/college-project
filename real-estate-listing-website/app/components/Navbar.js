@@ -5,14 +5,19 @@ import Image from 'next/image'
 import style from './Navbar.module.css'
 import { usePathname } from 'next/navigation'
 import Hero from './Hero'
+import { isUserSignedInHook } from './Client_userAuthCheck'
 
 const Navbar = () => {
   const [show,setshow] = useState(false)
+  const [authshow,setauthshow] = useState(false)
   const path = usePathname();
+
   console.log(path)
+  
   return (
+    
     <div className={style.navbar}>
-      <div className={`${path === "/api/auth/signin" || path === "/signup" ? style.navhide : style.navshow}
+      <div className={`${path === "/login" || path === "/signup" ? style.navhide : style.navshow}
                        ${path === "/" ? style.nav : style.navsolid}`}>
         <div className={style.logo}>
           <Image
@@ -30,8 +35,8 @@ const Navbar = () => {
           <Link target='_blank' href="/empty-plots">Empty Plots</Link>
         </div>
         
-        <div className={`${style.rightLinks} ${show ? style.show : style.hide}`}>
-          <Link target='_self' href="/api/auth/signin">Login</Link>
+        <div className={`${style.rightLinks} ${authshow || show ? style.show : style.hide}`}>
+          <Link target='_self' href="/login">Login</Link>
           <Link target='_self' href="/signup">Signup</Link>
         </div>
         <button className={style.togglenav} onClick={()=>setshow(!show)}>

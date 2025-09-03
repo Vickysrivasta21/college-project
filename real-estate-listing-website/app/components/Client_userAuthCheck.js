@@ -1,6 +1,6 @@
 "use client"
 import { authClient } from "@/_lib/betterauth/client-auth";
-function isUserSignedIn() {
+function isUserSignedInHook() {
     const { data: session, isPending, error, refetch } = authClient.useSession()
     if (session) {
         return true
@@ -8,5 +8,5 @@ function isUserSignedIn() {
     return false
 }
 
-export { isUserSignedIn }
+export { isUserSignedInHook }
 

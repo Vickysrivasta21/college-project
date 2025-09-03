@@ -76,6 +76,10 @@ export default function LoginPage() {
           Register
         </Link>
       </p>
+      <p style={{ textAlign: "center",marginTop: "1rem" }}>
+        Already Logged in, Click Here.{" "}
+        <Link href="/dashboard" style={{ color: "#2563eb", textDecoration: "underline" }}>To Dashboard</Link>
+      </p>
     </div>
   );
 }
