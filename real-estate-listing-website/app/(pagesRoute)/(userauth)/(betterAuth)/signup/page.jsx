@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-toastify";
-import { fetchData } from "@/lib/api";
+import { fetchData } from "@/_lib/api";
+import { authClient } from "@/_lib/betterauth/client-auth";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -17,29 +18,27 @@ export default function SignupPage() {
     e.preventDefault();
 
     try {
-      const res = await fetchData("/api/auth/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+      const { data, error } = await authClient.signUp.email(formData, {
+              onRequest: (ctx) => {
+                  //show loading
+              },
+              onSuccess: (ctx) => {
+                //localStorage.setItem("token", data.token);
+                toast.success("SignUp successful!", {
+                position: "top-center",
+                autoClose: 1500,
+              });
+              //window.location.href = "/dashboard";
+                  //redirect to the dashboard or sign in page
+              },
+              onError: (ctx) => {
+                  // display the error message
+                    toast.error(ctx.error.message || "SignUp Failed.", {
+                  position: "top-center",
+               });
+                  //alert(ctx.error.message);
+              },
       });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        toast.success("Signup successful! You can now log in.", {
-          position: "top-center",
-          autoClose: 1500,
-        });
-
-       
-        setTimeout(() => {
-          router.push("/login");
-        }, 1600); 
-      } else {
-        toast.error(data.msg || "Signup failed", {
-          position: "top-center",
-        });
-      }
     } catch (err) {
       toast.error("Something went wrong", {
         position: "top-center",

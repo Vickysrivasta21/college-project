@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import bg from '../components/backgroundMaincont.module.css'
+import bg from '@/components/backgroundMaincont.module.css'
 import { useForm } from "react-hook-form";
-import { fetchData } from "@/lib/api";
+import { fetchData } from "@/_lib/api";
 
 const Propertypage = () => {
   const [data, setdata] = useState([]);
@@ -223,7 +223,11 @@ const Propertypage = () => {
 
                   <div className="contact">
                     <div className="view">
-                      <Link target="_blank" href={`/propertydetail/${ele._id}`}>
+                      {/*
+                      // INFO: the `_self` target opens the page on the same tab.
+                      // INFO: the `_blank` target opens the page on a different tab.
+                      */}
+                      <Link target="_self" href={`/propertydetail/${ele._id}`}>
                         view details
                       </Link>
                     </div>

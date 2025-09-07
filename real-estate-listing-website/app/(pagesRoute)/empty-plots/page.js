@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./EmptyPlots.module.css";
 import Link from "next/link"
-import { fetchData } from "@/lib/api";
+import { fetchData } from "@/_lib/api";
 
 export default function EmptyPlotsPage() {
   const [plots, setPlots] = useState([]);
@@ -125,7 +125,7 @@ export default function EmptyPlotsPage() {
             <div className={styles.cardContent}>
               <h2>{plot.title}</h2>
               <p>{plot.description}</p>
-              
+
               <div className={styles.propertyDetails}>
                 <div className={styles.propertyDetail}>
                   <strong>Location:</strong> {plot.location}
@@ -140,20 +140,24 @@ export default function EmptyPlotsPage() {
                   <strong>Type:</strong> {plot.type}
                 </div>
               </div>
-              
+
               <div className={styles.rating}>
-                <strong>Rating:</strong> 
+                <strong>Rating:</strong>
                 <span className={styles.ratingValue}>{plot.rating}/5</span>
               </div>
-              
+
               {plot.reviews?.[0] && (
                 <p>
                   <em>{plot.reviews[0]}</em>
                 </p>
               )}
-              
+
               <div className={styles.buttonContainer}>
-                <Link target="_blank" href={`/empty-plots/${plot._id}`} className={`${styles.button} ${styles.primaryButton}`}>View Details</Link>
+                      {/*
+                      // INFO: the `_self` target opens the page on the same tab.
+                      // INFO: the `_blank` target opens the page on a different tab.
+                      */}
+                <Link target="_self" href={`/empty-plots/${plot._id}`} className={`${styles.button} ${styles.primaryButton}`}>View Details</Link>
                 <Link href={"/"} className={`${styles.button} ${styles.secondaryButton}`}>Contact Agent</Link>
               </div>
             </div>

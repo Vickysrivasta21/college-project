@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "react-toastify";
-import { fetchData } from "@/lib/api";
+import { fetchData } from "@/_lib/api";
+import { authClient } from "@/_lib/betterauth/client-auth";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,32 +18,27 @@ export default function LoginPage() {
     e.preventDefault();
 
     try {
-      const res = await fetchData("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-      
-        localStorage.setItem("token", data.token);
-
-        toast.success("Login successful!", {
+      const { data, error } = await authClient.signIn.email(formData, {
+        onRequest: (ctx) => {
+            //show loading
+        },
+        onSuccess: (ctx) => {
+          //localStorage.setItem("token", data.token);
+          toast.success("Login successful!", {
           position: "top-center",
           autoClose: 1500,
         });
-
-        
-        setTimeout(() => {
-          window.location.href = "/dashboard";
-        }, 1600);
-      } else {
-        toast.error(data.msg || "Incorrect email or password", {
-          position: "top-center",
-        });
-      }
+        window.location.href = "/dashboard";
+            //redirect to the dashboard or sign in page
+        },
+        onError: (ctx) => {
+            // display the error message
+              toast.error(ctx.error.message || "Incorrect email or password", {
+            position: "top-center",
+         });
+            //alert(ctx.error.message);
+        },
+});
     } catch (err) {
       toast.error("Something went wrong", {
         position: "top-center",
@@ -79,6 +75,10 @@ export default function LoginPage() {
         >
           Register
         </Link>
+      </p>
+      <p style={{ textAlign: "center",marginTop: "1rem" }}>
+        Already Logged in, Click Here.{" "}
+        <Link href="/dashboard" style={{ color: "#2563eb", textDecoration: "underline" }}>To Dashboard</Link>
       </p>
     </div>
   );

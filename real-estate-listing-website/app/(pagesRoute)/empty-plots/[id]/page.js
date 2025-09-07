@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import L from "leaflet";
 import style from './plotdetail.module.css';
-import { fetchData } from "@/lib/api";
+import { fetchData } from "@/_lib/api";
 
 const EmptyPlotDetails = () => {
     const { id } = useParams();

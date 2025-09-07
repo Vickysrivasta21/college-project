@@ -5,7 +5,8 @@ import style from './Maincont-landpage.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 import bg from './backgroundMaincont.module.css'
-import { fetchData } from '@/lib/api'
+import { fetchData } from '@/_lib/api'
+import { isUserSignedInHook } from './Client_userAuthCheck'
 const Maincont = () => {
     const [arr, setarr] = useState([])
     const [arr2, setarr2] = useState([])
@@ -42,24 +43,26 @@ const Maincont = () => {
             return amount * 10000000
         }
     }
+    
     return (
         <div>
+            {(isUserSignedInHook()==false) &&
             <div className={style.recommendsignin}>
                 <div className={style.recommendsign}>
                     <h2>Get Personalised Home Recommendations here</h2>
                     <p>Sign In for More Personalised Experience</p>
-                    <button className="btn"><Link target='_blank' href="/login">Login</Link></button>
+                    <button className="btn"><Link target='_self' href="/login">Login</Link></button>
                 </div>
                 <div className={style.imagerecommend}>
                     <Image
-                        src="/1d9d5bce566c85fa242cb21ad3292cb8.webp"
+                        src='/1d9d5bce566c85fa242cb21ad3292cb8.webp'
                         width={200}
                         height={200}
-                        alt="Property image"
+                        alt='Property image'
                         style={{ objectFit: 'contain' }}
                     />
                 </div>
-            </div>
+            </div> }
             <div className={style.browseprop}>
                 <div className={style.buyprop}>
                     <div className={style.img}>

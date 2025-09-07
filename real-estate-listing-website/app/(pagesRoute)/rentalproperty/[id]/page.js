@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import L from "leaflet";
 import style from './rental.module.css'
-import { fetchData } from "@/lib/api";
+import { fetchData } from "@/_lib/api";
 
 const PropertyDetails = () => {
     const { id } = useParams();

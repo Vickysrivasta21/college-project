@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import Maincont from '../components/Maincont-landpage'
+import Maincont from '@/components/Maincont-landpage'
 
 const Landingpage = () => {
   return (
