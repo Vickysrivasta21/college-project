@@ -17,6 +17,8 @@ This project is made to fulfil the requirements of Web Technology class.
 Steps
 
 1. Add the following environment variables to `.env` file.
+   
+   Can also refer to `env.example` file.
 
 For Frontend:
 
@@ -36,11 +38,10 @@ For Backend:
 |`JWT_SECRET`  |   random 40 character string for secret.        |
 |`MONGODB_URL` | URL for connection to MONGODB Server            |
 
-
-
-2. Run Frontend by `npm run dev` or `next dev` 
-3. run the backend server from the backend directory `backend` using `node server.js`
-4. Enjoy.
+2. Run `npm i` to install dependencies in both the root folder and the backend folder.
+3. Run Frontend by `npm run dev` or `next dev` 
+4. run the backend server from the backend directory `backend` using `node server.js`
+5. Enjoy.
 
 
 ### Development:
