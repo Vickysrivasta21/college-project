@@ -46,7 +46,8 @@ const Maincont = () => {
     
     return (
         <div>
-            {(isUserSignedInHook()==false) &&
+            {   /* Start of dynamic page content (ID:1) */
+            (isUserSignedInHook()==false) &&      
             <div className={style.recommendsignin}>
                 <div className={style.recommendsign}>
                     <h2>Get Personalised Home Recommendations here</h2>
@@ -62,7 +63,9 @@ const Maincont = () => {
                         style={{ objectFit: 'contain' }}
                     />
                 </div>
-            </div> }
+            </div> 
+                /* End of dynamic page content (ID:1) */
+            }  
             <div className={style.browseprop}>
                 <div className={style.buyprop}>
                     <div className={style.img}>
