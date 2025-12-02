@@ -8,5 +8,19 @@ function isUserSignedInHook() {
     return false
 }
 
-export { isUserSignedInHook }
+function fetchUserbyAPI()  {
+      try {
+        fetch("/api/auth/get-session").then((res) => res.json()).then((data) => {
+            if (data === null) {
+                return null
+            }
+            return data
+          });
+       
+      } catch (err) {
+        return `ERROR: ${err}`
+      }
+    };
+
+export { fetchUserbyAPI,isUserSignedInHook } // unused function: "isUserSignedInHook"
 
